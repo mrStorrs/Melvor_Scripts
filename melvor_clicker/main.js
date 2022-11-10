@@ -1,5 +1,5 @@
-function script() {
-    function injectSpeedButton() {
+export function setup(ctx) {
+    ctx.onInterfaceReady(ctx => {
         //This holds all the pages we want to add the button too. the b_ is to avoid any
         //id's clashing with the base game. 
         const buttonPages = [
@@ -33,17 +33,17 @@ function script() {
                             </div>
                         </div>
                     </div>
-    
+
                 `;
-    
+
                 // console.log(skillName.substring(1))
                 var template = document.createElement('template');
                 template.innerHTML = html.trim();
-    
+
                 let div = document.querySelector("#" + skillName.substring(2) + "-container.content");
                 div.appendChild(template.content.firstChild);
-    
-    
+
+
                 let volumeElement = document.getElementById(skillName)
                 volumeElement.onclick = function () {
                     if (game.activeAction.actionTimer.ticksLeft > 5) {
@@ -55,21 +55,9 @@ function script() {
                         game.activeAction.actionTimer._ticksLeft = 10
                     }
                 }
-    
+
             }
         }
-    }
-
-    let intervalSpeedButton = setInterval(injectSpeedButton, 100);
+    });
 }
 
-function loadScript() {
-    if (typeof confirmedLoaded !== typeof undefined && confirmedLoaded) {
-        clearInterval(scriptLoader);
-        const scriptElement = document.createElement('script');
-        scriptElement.textContent = `try {(${script})();} catch (e) {console.log(e);}`;
-        document.body.appendChild(scriptElement).parentNode.removeChild(scriptElement);
-    }
-}
-
-const scriptLoader = setInterval(loadScript, 200);
