@@ -18,6 +18,13 @@ function script() {
         previousDrops = drops;
     }
 
+    //new
+    function notifyWaveFinished() {
+        if (game.isGolbinRaid && (game.golbinRaid.state == 3 || game.golbinRaid.isSelectingPositiveModifier)) {
+            notificationSound.play();
+        }
+    }
+
     function notifyLowHealth() {
         let currentHealth = game.combat.player.hitpointsPercent
         if (currentHealth < 100 * healthThreshold && currentHealth != previousHealth) {
@@ -58,7 +65,9 @@ function script() {
             }, false);
         }
     }
-
+    //new
+    let intervalWaveFinished = setInterval(notifyWaveFinished, 100);
+    
     let intervalLoot = setInterval(notifyLootContainerFull, 100);
     let intervalHealth = setInterval(notifyLowHealth, 100);
     let intervalVolumeSlider = setInterval(injectVolumeSlider, 100);
