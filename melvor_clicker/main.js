@@ -1,4 +1,15 @@
 export function setup(ctx) {
+    ctx.onModsLoaded((ctx) => {
+        ctx.settings.section('General').add({
+            type: 'number',
+            name: 'clicker-ticks',
+            label: 'Ticks per click min 1, max 10',
+            default: 1,
+            min: 1,
+            max: 10
+        });
+    });
+    
     ctx.onInterfaceReady(ctx => {
         //This holds all the pages we want to add the button too. the b_ is to avoid any
         //id's clashing with the base game. 
@@ -21,7 +32,10 @@ export function setup(ctx) {
         ];
         buttonPages.forEach(createButton)
 
+
+
         function createButton(skillName){  
+            const clickerTicks = ctx.settings.section('General').get('clicker-ticks')
             if (!document.getElementById(skillName)) {
                 let html = `
                     <div class="block block-rounded-double bg-combat-inner-dark text-center p-3">
@@ -43,11 +57,11 @@ export function setup(ctx) {
                 let div = document.querySelector("#" + skillName.substring(2) + "-container.content");
                 div.appendChild(template.content.firstChild);
 
-
                 let volumeElement = document.getElementById(skillName)
                 volumeElement.onclick = function () {
-                    if (game.activeAction.actionTimer.ticksLeft > 5) {
-                        game.activeAction.actionTimer._ticksLeft = game.activeAction.actionTimer.ticksLeft - 1
+                    var clickerTicks = ctx.settings.section('General').get('clicker-ticks')
+                    if (game.activeAction.actionTimer.ticksLeft > clickerTicks + 5) {
+                        game.activeAction.actionTimer._ticksLeft = game.activeAction.actionTimer.ticksLeft - clickerTicks
                     }
                     
                     //checks if the interval got put into the negatives somehow. 
