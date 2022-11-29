@@ -1,0 +1,67 @@
+{
+  "$schema": "https://test.melvoridle.com/dlcPrep/assets/schema/gameData.json",
+  "data": {
+	"gamemodes": [
+		  {
+			"id": "HardcoreDropsOnly",
+			"name": "Permadeath Drops Only",
+			"media": "assets/icon.png",
+			"rules": [
+			  "and... dying is permanent.",
+			  "Combat Skills Only",
+			  "Non-Combat Skill Levels cannot go above your Combat Level.",
+			  "Start with only Melee Combat Skills, a Bronze Weapon and 10 Basic Food.",
+			  "Harsher penalties applied against you in Combat.",
+			  "HP, Damage and Food Healing values are 10x larger than Standard."
+			],
+			"textClass": "text-info",
+			"btnClass": "btn-gamemode-adventure",
+			"isPermaDeath": true,
+			"isEvent": false,
+			"endDate": 0,
+			"combatTriangle": "Hardcore",
+			"hitpointMultiplier": 10,
+			"hasRegen": true,
+			"capNonCombatSkillLevels": false,
+			"startingPage": "melvorD:Combat",
+			"startingItems": [
+			  {
+				"id": "melvorD:Bronze_Sword",
+				"quantity": 1
+			  },
+			  {
+				"id": "melvorD:Shrimp",
+				"quantity": 10
+			  }
+			],
+			"allowSkillUnlock": false,
+			"skillUnlockCost": [
+			],
+			"playerModifiers": {},
+			"enemyModifiers": {},
+			"hasTutorial": false,
+			"description": "For experienced Melvor Idle players. A completely different experience for you to enjoy.",
+			"startingSkills": [
+			  "melvorD:Attack",
+			  "melvorD:Strength",
+			  "melvorD:Defence",
+			  "melvorD:Hitpoints",
+			  "melvorD:Magic",
+			  "melvorD:Ranged",
+			  "melvorD:Prayer",
+			  "melvorD:Slayer",
+			  "melvorD:Firemaking",
+			  "melvorD:Cooking",
+			  "melvorD:Smithing",
+			  "melvorD:Fletching",
+			  "melvorD:Crafting",
+			  "melvorD:Runecrafting",
+			  "melvorD:Herblore",
+			  "melvorD:Agility",
+			  "melvorD:Astrology",
+			  "melvorD:Summoning"
+			]
+		  }
+		]
+  }
+}
