@@ -1,0 +1,72 @@
+{
+  "$schema": "https://test.melvoridle.com/dlcPrep/assets/schema/gameData.json",
+  "data": {
+	"gamemodes": [
+		  {
+			"id": "AdventurePermaDeath",
+			"name": "Permadeath Adventure Mode",
+			"media": "assets/icon.png",
+			"rules": [
+			  "and... dying is permanent.",
+			  "Skills are locked and must be purchased using GP to access.",
+			  "Non-Combat Skill Levels cannot go above your Combat Level.",
+			  "Start with only Melee Combat Skills, a Bronze Weapon and 10 Basic Food.",
+			  "Harsher penalties applied against you in Combat.",
+			  "HP, Damage and Food Healing values are 10x larger than Standard."
+			],
+			"textClass": "text-info",
+			"btnClass": "btn-gamemode-adventure",
+			"isPermaDeath": true,
+			"isEvent": false,
+			"endDate": 0,
+			"combatTriangle": "Hardcore",
+			"hitpointMultiplier": 10,
+			"hasRegen": true,
+			"capNonCombatSkillLevels": true,
+			"startingPage": "melvorD:Combat",
+			"startingItems": [
+			  {
+				"id": "melvorD:Bronze_Sword",
+				"quantity": 1
+			  },
+			  {
+				"id": "melvorD:Shrimp",
+				"quantity": 10
+			  }
+			],
+			"allowSkillUnlock": true,
+			"skillUnlockCost": [
+			  10000,
+			  25000,
+			  50000,
+			  200000,
+			  250000,
+			  400000,
+			  1000000,
+			  2500000,
+			  10000000,
+			  25000000,
+			  50000000,
+			  100000000,
+			  200000000,
+			  500000000,
+			  500000000,
+			  1000000000,
+			  1000000000
+			],
+			"playerModifiers": {},
+			"enemyModifiers": {},
+			"hasTutorial": true,
+			"description": "For experienced Melvor Idle players. A completely different experience for you to enjoy.",
+			"startingSkills": [
+			  "melvorD:Attack",
+			  "melvorD:Strength",
+			  "melvorD:Defence",
+			  "melvorD:Hitpoints",
+			  "melvorD:Farming",
+			  "melvorD:Woodcutting"
+			]
+		  }
+		]
+  }
+}
