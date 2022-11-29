@@ -1,4 +1,5 @@
 export function setup(ctx) {
+    let counter = 0
     ctx.onModsLoaded((ctx) => {
         ctx.settings.section('General').add({
             type: 'number',
@@ -58,7 +59,6 @@ export function setup(ctx) {
 
                 `;
 
-            // console.log(skillName.substring(1))
             var template = document.createElement('template');
             template.innerHTML = html.trim();
 
@@ -67,6 +67,8 @@ export function setup(ctx) {
 
             let volumeElement = document.getElementById(skillName)
             volumeElement.onclick = function () {
+                counter++; 
+                this.innerHTML = counter.toString(); 
                 var clickerTicks = ctx.settings.section('General').get('clicker-ticks')
                 if (game.activeAction.actionTimer.ticksLeft > clickerTicks + 5) {
                     game.activeAction.actionTimer._ticksLeft = game.activeAction.actionTimer.ticksLeft - clickerTicks
