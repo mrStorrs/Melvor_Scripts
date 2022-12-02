@@ -17,6 +17,14 @@ export function setup(ctx) {
             min: 50,
             max: 1000
         });
+        ctx.settings.section('General').add({
+            type: 'number',
+            name: 'combat-ticks',
+            label: 'Number of ticks per combat action',
+            default: 1,
+            min: 1,
+            max: 200
+        });
     });
     
     ctx.onInterfaceReady(ctx => {
@@ -37,7 +45,8 @@ export function setup(ctx) {
             "b_herblore",
             "b_agility",
             "b_summoning",
-            "b_magic"
+            "b_magic",
+            "b_combat"
         ];
         buttonPages.forEach(createButton)
     });
@@ -69,16 +78,38 @@ export function setup(ctx) {
             volumeElement.onclick = function () {
                 counter++; 
                 this.innerHTML = counter.toString(); 
-                var clickerTicks = ctx.settings.section('General').get('clicker-ticks')
-                if (game.activeAction.actionTimer.ticksLeft > clickerTicks + 5) {
-                    game.activeAction.actionTimer._ticksLeft = game.activeAction.actionTimer.ticksLeft - clickerTicks
-                } else {
-                    game.activeAction.actionTimer._ticksLeft = 1
-                }
+                if(this.id == "b_combat"){
+                    var clickerTicks = ctx.settings.section('General').get('combat-ticks')
+                    if (game.combat.player.timers.act._ticksLeft > clickerTicks + 5) {
+                        game.combat.player.timers.act._ticksLeft = game.combat.player.timers.act._ticksLeft - clickerTicks
+                    } else {
+                        game.combat.player.timers.act._ticksLeft = 1
+                    }
 
-                //checks if the interval got put into the negatives somehow. 
-                if (game.activeAction.actionTimer.ticksLeft < 0) {
-                    game.activeAction.actionTimer._ticksLeft = 10
+                    //checks if the interval got put into the negatives somehow. 
+                    if (game.combat.player.timers.act._ticksLeft < 0) {
+                        game.combat.player.timers.act._ticksLeft = 10
+                    }
+
+                    //lower spawn timer if running
+                    if (game.combat.spawnTimer._ticksLeft > clickerTicks * 2  + 2){
+                        game.combat.spawnTimer._ticksLeft = game.combat.spawnTimer._ticksLeft - (clickerTicks * 2)
+                    } else {
+                        game.combat.spawnTimer._ticksLeft = 1
+                    }
+
+                } else {
+                    var clickerTicks = ctx.settings.section('General').get('clicker-ticks')
+                    if (game.activeAction.actionTimer.ticksLeft > clickerTicks + 5) {
+                        game.activeAction.actionTimer._ticksLeft = game.activeAction.actionTimer.ticksLeft - clickerTicks
+                    } else {
+                        game.activeAction.actionTimer._ticksLeft = 1
+                    }
+    
+                    //checks if the interval got put into the negatives somehow. 
+                    if (game.activeAction.actionTimer.ticksLeft < 0) {
+                        game.activeAction.actionTimer._ticksLeft = 10
+                    }
                 }
             }
 
